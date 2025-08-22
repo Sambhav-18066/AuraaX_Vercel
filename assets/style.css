@@ -128,17 +128,26 @@ body{ background: radial-gradient(1200px 800px at 20% -10%, rgba(36,60,120,.2), 
 .btn.neon:hover{ transform: translateY(-1px); box-shadow: 0 10px 40px var(--glow); }
 
 /* Contact form theme */
-/* ==== Contact Form Styling Fix ==== */
+/* Force inputs to stand out against dark cards */
 form.contact-form input,
 form.contact-form textarea {
-  width: 100%;
-  background: #0d152a;           /* slightly lighter navy than bg */
-  border: 1px solid var(--border);
+  background: #15213b;               /* lighter navy-blue so box is visible */
+  border: 1px solid #2c3b65;         /* brighter border */
   color: var(--text);
   border-radius: 10px;
   padding: 12px 14px;
   font-size: 15px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.6);
 }
+
+form.contact-form input:focus,
+form.contact-form textarea:focus {
+  background: #1d2c4d;               /* slightly brighter on focus */
+  border-color: var(--brand);        /* neon blue border */
+  box-shadow: 0 0 0 3px rgba(59,167,255,.35), inset 0 1px 3px rgba(0,0,0,.5);
+  outline: none;
+}
+
 
 form.contact-form input::placeholder,
 form.contact-form textarea::placeholder {
