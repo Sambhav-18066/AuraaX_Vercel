@@ -41,30 +41,31 @@
 
   <section class="hero reveal">
     <div>
-      <h1>Construction & Consultancy with BIM, WebGL & VR</h1>
+      <h1 class="shot">Construction & Consultancy with BIM, WebGL & VR</h1>
       <p>End-to-end solutions—from planning and design to execution and handover—plus Revit 3D models and immersive walkthroughs for crystal-clear stakeholder alignment.</p>
       <div style="display:flex;gap:12px;margin-top:18px">
         <a class="btn neon" href="/book.html">Book Appointment</a>
         <a class="btn neon" href="/portfolio.html">See Portfolio</a>
       </div>
     </div>
-    <div class="hero-visual" style="background-image:url('/assets/hero.jpeg')"></div>
+    <div class="hero-visual" style="background-image:url('/assets/hero.jpg')"></div>
   </section>
 
   <section class="section reveal">
-    <h2>Core Services</h2>
+    <h2 class="shot">Core Services</h2>
     <div class="grid">
-      <div class="card"><h3>Construction & Infrastructure</h3><p>Residential, commercial, industrial, institutional; roads, bridges, highways, airports, tunnels, dams.</p></div>
-      <div class="card"><h3>EPC & Geotechnical</h3><p>Engineering, Procurement & Construction; soil investigation, foundation design, slope analysis.</p></div>
-      <div class="card"><h3>PMC & Specialized Infra</h3><p>Project Management & Consultancy; water treatment, sewage, pipelines, power stations.</p></div>
+      <div class="card shot"><h3>Construction & Infrastructure</h3><p>Residential, commercial, industrial, institutional; roads, bridges, highways, airports, tunnels, dams.</p></div>
+      <div class="card shot"><h3>EPC & Geotechnical</h3><p>Engineering, Procurement & Construction; soil investigation, foundation design, slope analysis.</p></div>
+      <div class="card shot"><h3>PMC & Specialized Infra</h3><p>Project Management & Consultancy; water treatment, sewage, pipelines, power stations.</p></div>
     </div>
   </section>
 
   <section class="section reveal">
-  <h2>Featured 3D Model</h2>
+  <h2 class="shot">Featured 3D Model</h2>
   <model-viewer src="/assets/models/Md.glb"
                 camera-controls autoplay shadow-intensity="10"
                 environment-image="neutral"
+                exposure="0.5"
                 style="width:100%;height:60vh;border:1px solid #1f2a44;border-radius:12px;">
   </model-viewer>
 </section>
@@ -123,9 +124,9 @@
 </section>
 
 </main>
-<footer><div class="container inner">
+<footer><div class="container inner reveal">
   <div>
-    <div class="card" style="background:transparent">
+    <div class="card shot" style="background:transparent">
       <div style="font-weight:700">Engineering the Future, Building with Trust</div>
       <p style="margin:6px 0 0;color:#9fb0c9;font-size:13px">© 2025 Auraax Engineering Solutions Pvt. Ltd.</p>
     </div>
@@ -143,5 +144,8 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 <script src="/assets/site.js"></script></footer>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+
+
+<script src="/assets/starfield.js"></script>
 
 </body></html>
