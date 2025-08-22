@@ -128,74 +128,22 @@ body{ background: radial-gradient(1200px 800px at 20% -10%, rgba(36,60,120,.2), 
 .btn.neon:hover{ transform: translateY(-1px); box-shadow: 0 10px 40px var(--glow); }
 
 /* Contact form theme */
-/* Force inputs to stand out against dark cards */
-form.contact-form input,
-form.contact-form textarea {
-  background: #15213b;               /* lighter navy-blue so box is visible */
-  border: 1px solid #2c3b65;         /* brighter border */
-  color: var(--text);
-  border-radius: 10px;
-  padding: 12px 14px;
-  font-size: 15px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,.6);
+form.contact-form{ max-width:760px; margin:auto; background: linear-gradient(180deg, rgba(12,20,40,.6), rgba(10,16,32,.6)); border:1px solid var(--border); border-radius:14px; padding:28px; backdrop-filter: blur(8px); }
+form.contact-form h2{ margin-top:0; color: #d8e7ff; }
+form.contact-form .row{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+form.contact-form label{ font-size:13px; color:var(--muted); display:block; margin-bottom:6px; }
+form.contact-form input, form.contact-form textarea, form.contact-form select{
+  width:100%; background:#0a1328; color:var(--text);
+  border:1px solid var(--border); border-radius:10px; padding:12px 14px; outline:none;
+  transition: border-color .2s ease, box-shadow .2s ease;
 }
-
-form.contact-form input:focus,
-form.contact-form textarea:focus {
-  background: #1d2c4d;               /* slightly brighter on focus */
-  border-color: var(--brand);        /* neon blue border */
-  box-shadow: 0 0 0 3px rgba(59,167,255,.35), inset 0 1px 3px rgba(0,0,0,.5);
-  outline: none;
-}
-
-
-form.contact-form input::placeholder,
-form.contact-form textarea::placeholder {
-  color: #6c7a96;                /* gray-blue placeholders */
-}
-
-form.contact-form input:focus,
-form.contact-form textarea:focus {
+form.contact-form input:focus, form.contact-form textarea:focus, form.contact-form select:focus{
   border-color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(59,167,255,0.25);
-  outline: none;
+  box-shadow: 0 0 0 4px rgba(59,167,255,.12);
 }
-
-form.contact-form .actions {
-  margin-top: 16px;
-  display: flex;
-  justify-content: flex-end;
-}
-
+form.contact-form .actions{ display:flex; gap:12px; justify-content:flex-end; margin-top:16px; }
+form.contact-form .hint{ font-size:12px; color:#a6b7d6; }
 
 /* Cards/sections polishing */
 .card{ background: linear-gradient(180deg, rgba(13,20,38,.6), rgba(9,14,28,.6)); border:1px solid var(--border); }
 section{ scroll-margin-top: 80px; }
-
-
-/* === Cinematic Motion Pack === */
-.shot{ opacity:0; transform: translateY(26px) scale(.98); will-change: transform, opacity; }
-.shot.is-in{ opacity:1; transform: translateY(0) scale(1); }
-
-/* optional framing */
-.frame-left::before, .frame-right::before{
-  content:""; position:absolute; top:0; bottom:0; width:28px; pointer-events:none; z-index:2;
-  background: linear-gradient(180deg, rgba(59,167,255,.12), rgba(93,227,255,0));
-  filter: blur(10px);
-}
-.frame-left::before{ left:-14px; }
-.frame-right::before{ right:-14px; }
-
-/* hero cinematic headline */
-.hero h1, .hero h2, .hero p.lead{ opacity:0; transform: translateY(24px); }
-
-/* smooth section separators */
-.section-pin { position: relative; }
-.section-pin::after{
-  content:""; position:absolute; left:50%; transform:translateX(-50%);
-  bottom:-1px; width:72%; height:1px; background: linear-gradient(90deg, transparent, rgba(93,227,255,.35), transparent);
-}
-
-/* Ken Burns utility for images */
-.ken-burns{ overflow:hidden; border-radius:12px; }
-.ken-burns img{ display:block; width:100%; height:auto; transform-origin:center; }
