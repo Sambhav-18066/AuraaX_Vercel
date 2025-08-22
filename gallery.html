@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Book – Auraax</title><meta name="description" content="Schedule via Google Calendar."/>
-<link rel="canonical" href="https://auraax.vercel.app/book.html"/>
+<title>Gallery – Auraax</title><meta name="description" content="Image gallery with lightbox."/>
+<link rel="canonical" href="https://auraax.vercel.app/gallery.html"/>
 <link rel="icon" href="/assets/favicon.ico"/>
-<meta property="og:title" content="Book – Auraax"/><meta property="og:description" content="Schedule via Google Calendar."/>
-<meta property="og:type" content="website"/><meta property="og:url" content="https://auraax.vercel.app/book.html"/>
+<meta property="og:title" content="Gallery – Auraax"/><meta property="og:description" content="Image gallery with lightbox."/>
+<meta property="og:type" content="website"/><meta property="og:url" content="https://auraax.vercel.app/gallery.html"/>
 <meta property="og:image" content="https://auraax.vercel.app/assets/og.jpg"/><meta name="twitter:card" content="summary_large_image"/>
 <link rel="stylesheet" href="/assets/style.css"/>
 <script type="application/ld+json">{'@context': 'https://schema.org', '@type': 'Organization', 'name': 'Auraax Engineering Solutions Pvt. Ltd.', 'url': 'https://auraax.vercel.app/', 'logo': 'https://auraax.vercel.app/assets/logo.png'}</script>
@@ -16,20 +16,36 @@
   <a class="" href="/about.html">About</a>
   <a class="" href="/services.html">Services</a>
   <a class="" href="/portfolio.html">Portfolio</a>
-  <a class="" href="/gallery.html">Gallery</a>
-  <a class="active" href="/book.html">Book</a>
+  <a class="active" href="/gallery.html">Gallery</a>
+  <a class="" href="/book.html">Book</a>
   <a class="" href="/contact.html">Contact</a>
 </div></header>
 
 <main class="container">
   <section class="reveal">
-    <h2>Book an Appointment</h2>
-    <p>Use our Google Calendar booking page to pick a time that suits you.</p>
-    <div class="card" style="margin:10px 0">
-      <p class="small">Google Calendar → Appointment schedule → Sharing options → Website embed / Link.</p>
-      <a class="btn neon" href="https://calendar.app.google/xvfoH2X1P48Lz2bb6" target="_blank" rel="noopener">Book via Google Calendar</a>
+    <h2>Gallery</h2>
+    <p class="small">Replace the images in <code>/assets/gallery/</code> with your own. Keep the same file names or update the <code>src</code> paths below.</p>
+    <div class="gallery">
+      <img src="/assets/gallery/img1.jpg" data-full="/assets/gallery/img1.jpg" alt="Gallery 1" />
+      <img src="/assets/gallery/img2.jpg" data-full="/assets/gallery/img2.jpg" alt="Gallery 2" />
+      <img src="/assets/gallery/img3.jpg" data-full="/assets/gallery/img3.jpg" alt="Gallery 3" />
+       <img src="/assets/gallery/img4.jpg" data-full="/assets/gallery/img3.jpg" alt="Gallery 4" />
+        <img src="/assets/gallery/img5.jpg" data-full="/assets/gallery/img3.jpg" alt="Gallery 5" />
+         <img src="/assets/gallery/img6.jpg" data-full="/assets/gallery/img3.jpg" alt="Gallery 6" />
+          <img src="/assets/gallery/img7.jpg" data-full="/assets/gallery/img3.jpg" alt="Gallery 7" />
+           <img src="/assets/gallery/img8.jpg" data-full="/assets/gallery/img3.jpg" alt="Gallery 8" />
+            <img src="/assets/gallery/img9.jpg" data-full="/assets/gallery/img3.jpg" alt="Gallery 9" />
+
+
+
+
+
     </div>
   </section>
+  <div class="lightbox">
+    <button class="close" aria-label="Close">×</button>
+    <img src="" alt="Full view"/>
+  </div>
 </main>
 <footer><div class="container inner">
   <div>
