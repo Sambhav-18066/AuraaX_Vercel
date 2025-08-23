@@ -21,7 +21,7 @@ body::before{
   background:
     radial-gradient(600px 200px at 80% -10%, rgba(56, 248, 136, 0.15), transparent 60%),
     linear-gradient(transparent 0 0), repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 80px),
-    repeating-linear-gradient(0deg, rgba(49, 199, 199, 0.03) 0 1px, transparent 1px 80px);
+    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 80px);
   animation:gridShift 30s linear infinite;
 }
 @keyframes gridShift{
