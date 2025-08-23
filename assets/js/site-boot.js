@@ -31,3 +31,48 @@
     });
   });
 })();
+
+
+(function(){
+  const root = document.documentElement;
+
+  function applyTheme(mode){
+    root.setAttribute('data-theme', mode);
+    try{ localStorage.setItem('theme', mode); }catch(e){}
+    // notify other scripts (e.g., starfield) to refresh
+    window.dispatchEvent(new CustomEvent('themechange', { detail: mode }));
+  }
+
+  function initialTheme(){
+    try{
+      const saved = localStorage.getItem('theme');
+      if(saved === 'light' || saved === 'dark') return saved;
+    }catch(e){}
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  // init
+  applyTheme(initialTheme());
+
+  // Add a toggle into the header
+  function mountToggle(){
+    const header = document.querySelector('header .nav') || document.querySelector('header') || document.body;
+    const btn = document.createElement('button');
+    btn.className = 'theme-toggle';
+    btn.setAttribute('aria-label','Toggle color theme');
+    btn.innerHTML = '<span class="icon" aria-hidden="true">🌙</span><span class="t">Theme</span>';
+    btn.addEventListener('click', ()=>{
+      const cur = root.getAttribute('data-theme') || 'light';
+      const next = (cur === 'light') ? 'dark' : 'light';
+      applyTheme(next);
+      btn.querySelector('.icon').textContent = next === 'dark' ? '🌙' : '☀️';
+    });
+    header && header.appendChild(btn);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', mountToggle);
+  }else{
+    mountToggle();
+  }
+})();
