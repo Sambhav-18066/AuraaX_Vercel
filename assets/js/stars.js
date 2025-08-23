@@ -32,7 +32,7 @@ let CONST=[], READY=false;
   img.onload = ()=>{
     const s=260, off=document.createElement('canvas'); off.width=s; off.height=s;
     const o=off.getContext('2d');
-    o.fillStyle='#000'; o.fillRect(0,0,s,s);
+    o.fillStyle='#fbff1bff'; o.fillRect(0,0,s,s);
     const mw=img.naturalWidth||s, mh=img.naturalHeight||s;
     const scale=Math.min(s/mw,s/mh), dw=mw*scale, dh=mh*scale, dx=(s-dw)/2, dy=(s-dh)/2;
     o.drawImage(img,dx,dy,dw,dh);
@@ -56,7 +56,7 @@ function draw(){
     s.tw += 0.05;
     const flick = 0.6 + Math.sin(s.tw)*0.4;
     ctx.globalAlpha = (0.3 + s.z*0.7) * flick;
-    ctx.fillStyle = '#cfe8ff';
+    ctx.fillStyle = '#65b1f8ff';
     ctx.beginPath(); ctx.arc(s.x, s.y*0.8, s.r*(1+s.z*0.4), 0, Math.PI*2); ctx.fill();
   }
   ctx.globalAlpha = 1;
