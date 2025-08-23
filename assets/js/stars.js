@@ -9,43 +9,32 @@ function resize(){
 }
 addEventListener('resize', resize); resize();
 
-function getVar(name){
-  const v = getComputedStyle(document.documentElement).getPropertyValue(name);
-  return (v||'').trim();
-}
 function drawBlueStar(x,y,r,twinkle){
-  // Read colors from CSS variables
-  const core = getVar('--star-core') || '#051036';
-  const halo1= getVar('--star-halo1')|| '#0d255f';
-  const halo2= getVar('--star-halo2')|| '#2563eb';
+  // Dark blue star with soft glow
+  const g1 = ctx.createRadialGradient(x,y,0, x,y, r*4);
+  g1.addColorStop(0.0, 'rgba(5,16,54,0.95)');     // very dark navy
+  g1.addColorStop(0.35,'rgba(13,37,95,0.70)');    // deep blue
+  g1.addColorStop(0.55,'rgba(37,99,235,0.30)');   // blue halo
+  g1.addColorStop(1.0, 'rgba(59,130,246,0.00)');  // fade
 
   const scale = 1 + Math.sin(twinkle)*0.08;
   const R = r*scale;
 
-  const g1 = ctx.createRadialGradient(x,y,0, x,y, R*3.2);
-  g1.addColorStop(0.0, core.replace('#','rgba(')); // we will still draw layered gradients below
-
-  // Outer halo
-  const outer = ctx.createRadialGradient(x,y,0, x,y, R*3.6);
-  outer.addColorStop(0.0, 'rgba(0,0,0,0)');
-  outer.addColorStop(0.5, halo1);
-  outer.addColorStop(1.0, 'rgba(0,0,0,0)');
-
   ctx.save();
   ctx.globalCompositeOperation = 'lighter';
-  // Outer glow
-  const g = ctx.createRadialGradient(x,y,0, x,y, R*4.0);
-  g.addColorStop(0.0, halo2.replace('#','rgba('));
-  g.addColorStop(1.0, 'rgba(0,0,0,0)');
-  ctx.fillStyle = g;
-  drawBlueStar(x,y,R*2.6, t);
+  ctx.fillStyle = g1;
+  ctx.beginPath();
+  ctx.arc(x,y,R*2.2,0,Math.PI*2);
+  ctx.fill();
 
-  // Core gradient
-  const g2 = ctx.createRadialGradient(x,y,0, x,y, R*1.3);
-  g2.addColorStop(0.0, core);
-  g2.addColorStop(1.0, 'rgba(0,0,0,0)');
+  const g2 = ctx.createRadialGradient(x,y,0, x,y, R);
+  g2.addColorStop(0.0, 'rgba(2,8,23,0.95)');
+  g2.addColorStop(0.6, 'rgba(13,37,95,0.35)');
+  g2.addColorStop(1.0, 'rgba(13,37,95,0.00)');
   ctx.fillStyle = g2;
-  drawBlueStar(x,y,R*1.3, t);
+  ctx.beginPath();
+  ctx.arc(x,y,R,0,Math.PI*2);
+  ctx.fill();
   ctx.restore();
 }
 
@@ -128,7 +117,7 @@ let CONST = [], READY = false, T0 = 0;
 
 function draw(){
   // Fill bg (match your site’s dark tone)
-  ctx.fillStyle = getVar('--star-bg') || '#ffffff'; 
+  ctx.fillStyle = '#ffffff'; 
   ctx.fillRect(0,0,w,h);
 
   // Background stars (twinkle)
