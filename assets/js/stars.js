@@ -9,6 +9,36 @@ function resize(){
 }
 addEventListener('resize', resize); resize();
 
+function drawBlueStar(x,y,r,twinkle){
+  // Dark blue star with soft glow
+  const g1 = ctx.createRadialGradient(x,y,0, x,y, r*4);
+  g1.addColorStop(0.0, 'rgba(5,16,54,0.95)');     // very dark navy
+  g1.addColorStop(0.35,'rgba(13,37,95,0.70)');    // deep blue
+  g1.addColorStop(0.55,'rgba(37,99,235,0.30)');   // blue halo
+  g1.addColorStop(1.0, 'rgba(59,130,246,0.00)');  // fade
+
+  const scale = 1 + Math.sin(twinkle)*0.08;
+  const R = r*scale;
+
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  ctx.fillStyle = g1;
+  ctx.beginPath();
+  ctx.arc(x,y,R*2.2,0,Math.PI*2);
+  ctx.fill();
+
+  const g2 = ctx.createRadialGradient(x,y,0, x,y, R);
+  g2.addColorStop(0.0, 'rgba(2,8,23,0.95)');
+  g2.addColorStop(0.6, 'rgba(13,37,95,0.35)');
+  g2.addColorStop(1.0, 'rgba(13,37,95,0.00)');
+  ctx.fillStyle = g2;
+  ctx.beginPath();
+  ctx.arc(x,y,R,0,Math.PI*2);
+  ctx.fill();
+  ctx.restore();
+}
+
+
 // Background stars
 const STARS=[];
 for(let i=0;i<520;i++){
@@ -87,7 +117,7 @@ let CONST = [], READY = false, T0 = 0;
 
 function draw(){
   // Fill bg (match your site’s dark tone)
-  ctx.fillStyle = '#0b1120'; 
+  ctx.fillStyle='#ffffff'; 
   ctx.fillRect(0,0,w,h);
 
   // Background stars (twinkle)
