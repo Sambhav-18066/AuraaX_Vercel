@@ -1,43 +1,31 @@
 
 (function(){
   function ready(fn){ if(document.readyState!=='loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
-
   ready(function(){
-    // detect base path from current script tag to support subfolders
-    var boot = document.currentScript || (function(){
-      var s = document.querySelector('script[src*="site-boot.js"]');
-      return s;
-    })();
-    var base = "/";
-    if (boot && boot.getAttribute('src')){
-      var src = boot.getAttribute('src'); // e.g., /assets/js/site-boot.js or assets/js/site-boot.js
-      if (src.indexOf('/assets/js/site-boot.js') === -1) {
-        // relative include like "assets/js/site-boot.js"
-        // build a relative base from current path
-        base = ""; // use relative paths
-      }
+    // ensure canvas exists + inline full-viewport styles (no CSS dependency)
+    var c = document.getElementById('starfield');
+    if(!c){
+      c = document.createElement('canvas'); c.id='starfield';
+      c.style.position='fixed'; c.style.top='0'; c.style.left='0'; c.style.right='0'; c.style.bottom='0';
+      c.style.width='100vw'; c.style.height='100vh'; c.style.zIndex='-2'; c.style.display='block';
+      document.body.prepend(c);
+    }else{
+      // enforce full viewport in case existing styles restrict height
+      c.style.position='fixed'; c.style.top='0'; c.style.left='0'; c.style.right='0'; c.style.bottom='0';
+      c.style.width='100vw'; c.style.height='100vh'; c.style.zIndex='-2'; c.style.display='block';
     }
 
-    function addCSS(href){
-      if(!document.querySelector('link[href*="'+href+'"]')){
-        var l=document.createElement('link'); l.rel='stylesheet'; l.href=href; document.head.appendChild(l);
-      }
-    }
+    // figure out asset base path (absolute vs relative include)
+    var boot = document.currentScript || document.querySelector('script[src*="site-boot.js"]');
+    var src  = boot && boot.getAttribute('src') || "";
+    var base = (src.startsWith("/") ? "/" : "");
+
     function addScript(src, cb){
       if(document.querySelector('script[src="'+src+'"]')){ cb&&cb(); return; }
       var s=document.createElement('script'); s.src=src; s.onload=cb||null; document.body.appendChild(s);
     }
 
-    // Ensure body exists (if this ran in <head>)
-    if(!document.body){ document.body = document.getElementsByTagName('body')[0] || document.createElement('body'); }
-
-    // Ensure canvas
-    if(!document.getElementById('starfield')){
-      var c=document.createElement('canvas'); c.id='starfield'; document.body.prepend(c);
-    }
-
-    // Load CSS and scripts (order matters)
-    addCSS(base + "assets/css/main.css");
+    // Load stars first, then scroll
     addScript(base + "assets/js/stars.js", function(){
       addScript(base + "assets/js/scroll.js");
     });
