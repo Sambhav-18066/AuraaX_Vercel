@@ -9,6 +9,47 @@ function resize(){
 }
 addEventListener('resize', resize); resize();
 
+function getVar(name){
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name);
+  return (v||'').trim();
+}
+function drawBlueStar(x,y,r,twinkle){
+  // Read colors from CSS variables
+  const core = getVar('--star-core') || '#051036';
+  const halo1= getVar('--star-halo1')|| '#0d255f';
+  const halo2= getVar('--star-halo2')|| '#2563eb';
+
+  const scale = 1 + Math.sin(twinkle)*0.08;
+  const R = r*scale;
+
+  const g1 = ctx.createRadialGradient(x,y,0, x,y, R*3.2);
+  g1.addColorStop(0.0, core.replace('#','rgba(')); // we will still draw layered gradients below
+
+  // Outer halo
+  const outer = ctx.createRadialGradient(x,y,0, x,y, R*3.6);
+  outer.addColorStop(0.0, 'rgba(0,0,0,0)');
+  outer.addColorStop(0.5, halo1);
+  outer.addColorStop(1.0, 'rgba(0,0,0,0)');
+
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  // Outer glow
+  const g = ctx.createRadialGradient(x,y,0, x,y, R*4.0);
+  g.addColorStop(0.0, halo2.replace('#','rgba('));
+  g.addColorStop(1.0, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g;
+  drawBlueStar(x,y,R*2.6, t);
+
+  // Core gradient
+  const g2 = ctx.createRadialGradient(x,y,0, x,y, R*1.3);
+  g2.addColorStop(0.0, core);
+  g2.addColorStop(1.0, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g2;
+  drawBlueStar(x,y,R*1.3, t);
+  ctx.restore();
+}
+
+
 // Background stars
 const STARS=[];
 for(let i=0;i<520;i++){
@@ -87,7 +128,7 @@ let CONST = [], READY = false, T0 = 0;
 
 function draw(){
   // Fill bg (match your site’s dark tone)
-  ctx.fillStyle = '#0b1120'; 
+  ctx.fillStyle = getVar('--star-bg') || '#ffffff'; 
   ctx.fillRect(0,0,w,h);
 
   // Background stars (twinkle)
@@ -95,7 +136,7 @@ function draw(){
     s.tw += 0.05;
     const flick = 0.6 + Math.sin(s.tw)*0.4;
     ctx.globalAlpha = (0.3 + s.z*0.7) * flick;
-    ctx.fillStyle = '#65b1f8ff';
+    ctx.fillStyle = getVar('--star-bg') || '#ffffff';
     ctx.beginPath(); ctx.arc(s.x, s.y*0.8, s.r*(1+s.z*0.4), 0, Math.PI*2); ctx.fill();
   }
   ctx.globalAlpha = 1;
@@ -134,7 +175,7 @@ function draw(){
       ctx.globalAlpha = glowAlpha * flick;
       ctx.shadowColor = '#78b3ff';
       ctx.shadowBlur = 14 * (0.6 + 0.4*e);
-      ctx.fillStyle = '#a8d6ff';
+      ctx.fillStyle = getVar('--star-bg') || '#ffffff';
 
       const r = 1.6 + (e*0.8) + (flick*0.4);
       ctx.beginPath();
@@ -174,3 +215,5 @@ function draw(){
   requestAnimationFrame(draw);
 }
 draw();
+
+window.addEventListener('themechange', ()=>{ resize(); });
