@@ -1,6 +1,6 @@
 
 :root{
-  --bg:#2898e2;
+  --bg:#ee5642;
   --panel:#0b1220;
   --text:#e5e7eb;
   --muted:#a3adc2;
@@ -19,9 +19,9 @@ body::before{
   content:"";
   position:fixed;inset:-200px -200px auto -200px;height:120vh;z-index:-2;
   background:
-    radial-gradient(600px 200px at 80% -10%, rgba(56,189,248,.15), transparent 60%),
+    radial-gradient(600px 200px at 80% -10%, rgba(56, 248, 136, 0.15), transparent 60%),
     linear-gradient(transparent 0 0), repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 80px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 80px);
+    repeating-linear-gradient(0deg, rgba(49, 199, 199, 0.03) 0 1px, transparent 1px 80px);
   animation:gridShift 30s linear infinite;
 }
 @keyframes gridShift{
