@@ -87,7 +87,7 @@ let CONST = [], READY = false, T0 = 0;
 
 function draw(){
   // Fill bg (match your site’s dark tone)
-  ctx.fillStyle = '#0b1120'; 
+  ctx.fillStyle = '#ffffff'; 
   ctx.fillRect(0,0,w,h);
 
   // Background stars (twinkle)
