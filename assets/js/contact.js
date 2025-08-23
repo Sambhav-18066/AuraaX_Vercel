@@ -1,1 +1,0 @@
-document.getElementById('contact-form')?.addEventListener('submit',e=>{e.preventDefault();const btn=e.target.querySelector('button[type="submit"]');const orig=btn.textContent;btn.disabled=true;btn.textContent='Sending…';setTimeout(()=>{alert('Thanks! We will get back to you shortly.');btn.disabled=false;btn.textContent=orig;e.target.reset();},900);});
